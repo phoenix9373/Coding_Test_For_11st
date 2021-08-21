@@ -1,0 +1,25 @@
+{
+  "name": "coding_test_for_11st",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "2.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phoenix9373/Coding_Test_For_11st.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phoenix9373/Coding_Test_For_11st/issues"
+  },
+  "homepage": "https://github.com/phoenix9373/Coding_Test_For_11st#readme"
+}
