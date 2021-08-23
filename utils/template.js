@@ -22,7 +22,7 @@ export const alarmInput = () => {
   const mins = Array.from({ length: 6 }, (_, idx) => idx * 10)
 
   return `
-    <div class="alarm-input">
+    <div class="alarm-input unVisible">
       <select id="select-meridiem">
         <option value="오전">오전</option>
         <option value="오후">오후</option>

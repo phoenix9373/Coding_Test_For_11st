@@ -1,27 +1,10 @@
-const onClickBack = (currentApp) => {
-  switch (currentApp) {
-    case 'alarm':
-      return () => {}
-    case 'memo':
-      return () => {}
-    case 'photo':
-      return () => {}
-    default:
-      return () => {}
-  }
-}
-
 const onClickNew = (currentApp) => {
   switch (currentApp) {
-    case 'alarm':
+    case '알람':
       return () => {}
-    case 'memo':
-      return () => {}
-    case 'photo':
-      return () => {}
-    default:
+    case '메모':
       return () => {}
   }
 }
 
-export { onClickBack, onClickNew }
+export { onClickNew }
