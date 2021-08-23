@@ -73,8 +73,8 @@ export default function App() {
   })
 
   this.photoApp = new PhotoApp({
+    $target: this.$content,
     initialState: this.state.photoStatus,
-    onHandleClick: () => {},
   })
 
   this.setState = (nextState) => {

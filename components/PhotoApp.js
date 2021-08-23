@@ -1,6 +1,5 @@
-export default function PhotoApp({ $app, initialState }) {
-  this.$app = $app
-  this.$target = document.querySelector('.photo')
+export default function PhotoApp({ $target, initialState }) {
+  this.$target = $target
   this.state = initialState
 
   this.setState = (nextState) => {
