@@ -39,3 +39,17 @@ export const alarmInput = () => {
     </div>
   `
 }
+
+export const alarmItem = ({ meridiem, hour, min }) => {
+  return `${meridiem} ${hour}시 ${min}분`
+}
+
+export const memoInput = () => {
+  return `
+    <input type="text" class="memo-input unVisible" placeholder="메모를 입력하세요."></input>
+    `
+}
+
+export const memoItem = (text) => {
+  return `<div class="memo-container memo-hidden"><span class="memo-text">${text}</span></div>`
+}

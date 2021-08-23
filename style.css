@@ -2,10 +2,22 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
   background-color: royalblue;
+  width: 400px;
+  height: 600px;
+  border-radius: 5%;
 }
 
 .nav {
@@ -41,4 +53,26 @@ body {
 
 .unVisible {
   display: none;
+}
+
+.memo-input {
+  width: 100%;
+}
+
+.memo-container {
+  background-color: white;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.memo-text {
+  color: black;
+  font-weight: 500;
+}
+
+.memo-hidden {
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  line-height: 1.2em;
+  height: 2.4em;
 }
