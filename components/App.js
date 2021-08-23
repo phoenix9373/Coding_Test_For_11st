@@ -18,18 +18,6 @@ export default function App() {
   }
   this.$content = document.querySelector('.content')
 
-  const callbackNewButton = (currentAppName) => {
-    // new button에 대한 callback function
-    // 현재 app에 따라 실행하는 함수가 다름.
-    if (currentAppName === 'alarm') {
-      console.log('alarm')
-    } else if (currentAppName === 'memo') {
-      console.log('alarm')
-    } else {
-      console.log('alarm')
-    }
-  }
-
   this.renderApp = () => {
     switch (this.state.currentApp) {
       case '알람':
@@ -46,17 +34,31 @@ export default function App() {
         break
     }
   }
-
-  // back, new는 App에서 관리함. -> 버튼은 눌렀을 때, 아래 함수를 실행시키는 것으로
-  // 아래 함수는 현재 current 상태를 참고해서 실행할 함수를 반환.
-
+  
   this.statusBar = new StatusBar({
     initialState: this.state.isActive,
+    onHandleClickBack: () => {
+      this.setState({
+        ...this.state,
+        isActive: {back: false, new: false},
+        currentApp: 'home',
+      })
+    },
+    onHandleClickNew: () => {
+      if (this.state.currentApp === '알람') {
+        this.alramApp.makeInputHidden()
+      } else if(this.state.currentApp === '메모') {
+
+      }
+    },
   })
 
   this.home = new Home({
     initialState: this.state.homeStatus,
-    onHandleClick: this.renderApp,
+    onHandleClick: (appName) => {
+      const isActive = appName === '사진' ? { back: true, new: false } : { back: true, new: true }
+      this.setState({...this.state, currentApp: appName, isActive })
+    },
     changeAppName: (appName) => this.setState({ ...this.state, currentApp: appName }),
   })
 
@@ -78,6 +80,7 @@ export default function App() {
 
   this.setState = (nextState) => {
     this.state = nextState
+    this.statusBar.setState(nextState.isActive)
     this.render()
   }
 

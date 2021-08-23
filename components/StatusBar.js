@@ -11,13 +11,13 @@ export default function StatusBar({ initialState, onHandleClickBack, onHandleCli
   this.$target = $target
   this.state = initialState
 
-  this.$backBtn = new Button({ $target: this.$nav, innerText: 'BACK', onHandleClick: () => {} })
+  this.$backBtn = new Button({ $target: this.$nav, innerText: 'BACK', onHandleClick: onHandleClickBack })
   this.$backBtn.setClass('nav-btn')
   this.$backBtn.setClass('unVisible')
 
   this.$nav.appendChild(this.$target)
 
-  this.$newBtn = new Button({ $target: this.$nav, innerText: 'NEW', onHandleClick: () => {} })
+  this.$newBtn = new Button({ $target: this.$nav, innerText: 'NEW', onHandleClick: onHandleClickNew })
   this.$newBtn.setClass('nav-btn')
   this.$newBtn.setClass('unVisible')
 

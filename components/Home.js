@@ -27,8 +27,9 @@ export default function Home({ initialState, onHandleClick, changeAppName }) {
     const apps = document.querySelectorAll('.app-container')
     apps.forEach((app) => {
       app.addEventListener('click', () => {
-        changeAppName(app.dataset.name)
-        onHandleClick()
+        const appName = app.dataset.name
+        changeAppName(appName)
+        onHandleClick(appName)
       })
     })
   }
