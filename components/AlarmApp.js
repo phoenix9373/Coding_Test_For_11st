@@ -1,20 +1,16 @@
-import { alarmInput, alarm } from '../utils/template.js'
+import { alarmInput, alarm, alarmItem } from '../utils/template.js'
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage.js'
 import { getSecond } from '../utils/alarmFunction.js'
 
-export default function AlarmApp({ $target, initialState, onHandleClick }) {
-  this.$target = $target // content
+export default function AlarmApp({ $target, initialState }) {
+  this.$target = $target
   this.state = getLocalStorage('alarm') ? getLocalStorage('alarm') : initialState
-
-  const alarmItem = ({ meridiem, hour, min }) => {
-    return `${meridiem} ${hour}시 ${min}분`
-  }
 
   const getSelectedValue = (selectElement) => {
     return selectElement.options[selectElement.selectedIndex].value
   }
 
-  this.makeInputHidden = () => {
+  this.makeInputVisible = () => {
     this.$input.classList.remove('unVisible')
   }
 
@@ -35,6 +31,14 @@ export default function AlarmApp({ $target, initialState, onHandleClick }) {
     const timeId = setTimeout(() => {
       alert(alarmItem({ ...info }))
     }, alarmTime)
+
+    setTimeout(() => {
+      const nextState = this.state.filter(({ id }) => {
+        return id !== timeId
+      })
+      this.state = nextState
+    }, alarmTime)
+
     return timeId
   }
 

@@ -46,9 +46,9 @@ export default function App() {
     },
     onHandleClickNew: () => {
       if (this.state.currentApp === '알람') {
-        this.alramApp.makeInputHidden()
+        this.alramApp.makeInputVisible()
       } else if (this.state.currentApp === '메모') {
-        console.log()
+        this.memoApp.makeInputVisible()
       }
     },
   })
@@ -65,12 +65,11 @@ export default function App() {
   this.alramApp = new AlarmApp({
     $target: this.$content,
     initialState: this.state.alarmStatus,
-    onHandleClick: () => {},
   })
 
   this.memoApp = new MemoApp({
+    $target: this.$content,
     initialState: this.state.memoStatus,
-    onHandleClick: () => {},
   })
 
   this.photoApp = new PhotoApp({
