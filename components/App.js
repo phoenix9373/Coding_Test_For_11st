@@ -34,21 +34,21 @@ export default function App() {
         break
     }
   }
-  
+
   this.statusBar = new StatusBar({
     initialState: this.state.isActive,
     onHandleClickBack: () => {
       this.setState({
         ...this.state,
-        isActive: {back: false, new: false},
+        isActive: { back: false, new: false },
         currentApp: 'home',
       })
     },
     onHandleClickNew: () => {
       if (this.state.currentApp === '알람') {
         this.alramApp.makeInputHidden()
-      } else if(this.state.currentApp === '메모') {
-
+      } else if (this.state.currentApp === '메모') {
+        console.log()
       }
     },
   })
@@ -57,7 +57,7 @@ export default function App() {
     initialState: this.state.homeStatus,
     onHandleClick: (appName) => {
       const isActive = appName === '사진' ? { back: true, new: false } : { back: true, new: true }
-      this.setState({...this.state, currentApp: appName, isActive })
+      this.setState({ ...this.state, currentApp: appName, isActive })
     },
     changeAppName: (appName) => this.setState({ ...this.state, currentApp: appName }),
   })

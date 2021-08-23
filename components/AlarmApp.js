@@ -1,11 +1,12 @@
 import { alarmInput, alarm } from '../utils/template.js'
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage.js'
+import { getSecond } from '../utils/alarmFunction.js'
 
 export default function AlarmApp({ $target, initialState, onHandleClick }) {
   this.$target = $target // content
-  this.state = getLocalStorage("alarm") ? getLocalStorage("alarm") : initialState
+  this.state = getLocalStorage('alarm') ? getLocalStorage('alarm') : initialState
 
-  const alarmItem = ({meridiem, hour, min}) => {
+  const alarmItem = ({ meridiem, hour, min }) => {
     return `${meridiem} ${hour}시 ${min}분`
   }
 
@@ -21,6 +22,7 @@ export default function AlarmApp({ $target, initialState, onHandleClick }) {
     const target = e.target
     if (target.className !== 'alarm-remove') return
 
+    this.removeAlarm(target.dataset.alarmId)
     const nextState = this.state.filter(({ id }) => {
       return id !== target.dataset.alarmId
     })
@@ -28,12 +30,20 @@ export default function AlarmApp({ $target, initialState, onHandleClick }) {
     this.setState(nextState)
   })
 
-  this.setAlarm = () => {}
+  this.setAlarm = (info) => {
+    const alarmTime = getSecond({ ...info })
+    const timeId = setTimeout(() => {
+      alert(alarmItem({ ...info }))
+    }, alarmTime)
+    return timeId
+  }
 
-  this.removeAlarm = () => {}
+  this.removeAlarm = (timeId) => {
+    clearTimeout(timeId)
+  }
 
   this.setState = (nextState) => {
-    setLocalStorage("alarm", nextState)
+    setLocalStorage('alarm', nextState)
     this.state = nextState
     this.render()
   }
@@ -45,6 +55,7 @@ export default function AlarmApp({ $target, initialState, onHandleClick }) {
       })
       .join('')
     const htmlString = alarmInput() + alarmItems
+
     this.$target.innerHTML = htmlString
 
     this.$input = document.querySelector('.alarm-input')
@@ -57,7 +68,8 @@ export default function AlarmApp({ $target, initialState, onHandleClick }) {
         min: getSelectedValue(document.querySelector('#select-min')),
       }
 
-      this.setState([...this.state, { item: alarmItem({...info}), id: String(Date.now()) }])
+      const timeId = this.setAlarm(info)
+      this.setState([...this.state, { item: alarmItem({ ...info }), id: timeId }])
       this.$input.classList.add('unVisible')
     })
   }
